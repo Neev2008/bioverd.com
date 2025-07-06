@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - BioVerd</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function handleLogin(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      const savedUser = JSON.parse(localStorage.getItem("bioved-user"));
+
+      if (!savedUser) {
+        alert("No user found. Please sign up first.");
+        return;
+      }
+
+      if (email === savedUser.email && password === savedUser.password) {
+        localStorage.setItem("bioved-logged-in", "true");
+        alert("Login successful!");
+        window.location.href = "profile.html";
+      } else {
+        alert("Invalid email or password.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="BioVerd Logo" class="logo">
+    <h1 class="animated-title">Welcome Back</h1>
+    <p class="tagline">Power up with BioVerd</p>
+  </header>
+
+  <section class="intro-section">
+    <h2>Login to Your Account</h2>
+    <form class="contact-form" onsubmit="handleLogin(event)">
+      <label for="email">Email Address</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="password">Password</label><br>
+      <input type="password" id="password" name="password" required><br><br>
+
+      <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p style="margin-top: 20px;">Don't have an account yet? <a href="signup.html">Sign Up</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 BioVerd. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a> |
+      <a href="about.html">About Us</a> |
+      <a href="pricing.html">Pricing</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="signup.html">Sign Up</a> |
+      <a href="login.html">Login</a>
+    </div>
+  </footer>
+</body>
+</html>

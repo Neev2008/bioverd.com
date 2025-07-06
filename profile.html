@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Profile - BioVerd</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function loadProfile() {
+      const isLoggedIn = localStorage.getItem("bioved-logged-in");
+      const userData = JSON.parse(localStorage.getItem("bioved-user"));
+
+      if (!isLoggedIn || !userData) {
+        alert("Please log in first.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("user-name").innerText = userData.name;
+      document.getElementById("user-email").innerText = userData.email;
+    }
+
+    function logout() {
+      localStorage.removeItem("bioved-logged-in");
+      alert("You have been logged out.");
+      window.location.href = "login.html";
+    }
+
+    window.onload = loadProfile;
+  </script>
+</head>
+<body>
+  <header>
+    <img src="logo.png" alt="BioVerd Logo" class="logo">
+    <h1 class="animated-title">Your Profile</h1>
+    <p class="tagline">Welcome to the green future 🌿</p>
+  </header>
+
+  <section class="intro-section">
+    <h2>Hello, <span id="user-name"></span>!</h2>
+    <p>Your registered email is <strong><span id="user-email"></span></strong>.</p>
+    <button onclick="logout()" class="btn btn-outline">Log Out</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 BioVerd. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="index.html">Home</a> |
+      <a href="about.html">About Us</a> |
+      <a href="pricing.html">Pricing</a> |
+      <a href="contact.html">Contact</a> |
+      <a href="signup.html">Sign Up</a> |
+      <a href="login.html">Login</a>
+    </div>
+  </footer>
+</body>
+</html>
